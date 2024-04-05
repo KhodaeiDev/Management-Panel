@@ -6,6 +6,7 @@ const ejs = require("ejs");
 const app = express();
 
 app.use("/css", express.static(path.join(__dirname, "public/style")));
+app.use("/js", express.static(path.join(__dirname, "public/js")));
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use("/fonts", express.static(path.join(__dirname, "public/fonts")));
 
