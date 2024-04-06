@@ -76,13 +76,13 @@
       <div class="modal-content">
         <!-- ! Edit Course  ! -->
         <h1 class="modal-title">اضافه کردن دوره جدید</h1>
-        <form action="" class="edit-user-form">
+        <form action="/courses" class="edit-user-form" , method="post">
           <div class="input-field">
             <span><i class="fa fa-tag"></i></span>
             <input
               type="text"
               id=""
-              name=""
+              name="title"
               class="new-course-title"
               placeholder="نام دوره"
               spellcheck="false"
@@ -188,7 +188,6 @@
         <section class="courses">
           <div class="courses-top">
             <h2 class="courses-title">دوره ها</h2>
-            <a href="#" class="btn add-discounts"> اعمال تخفیف همگانی </a>
             <a href="#" class="btn courses-btn-add-new-course"
               >اضافه کردن دوره جدید</a
             >
@@ -196,16 +195,22 @@
 
           <!-- Courses List -->
           <ul class="courses-list">
+            <%courses.forEach(function(course){%>
             <li class="courses-item">
               <div class="courses-img-title">
                 <img src="images/courses/PWA.jpg" alt="" class="courses-img" />
-                <h5 class="courses-name">دوره متخصص Next.js - (Off 10%)</h5>
+                <h5 class="courses-name"><%= course.title %></h5>
               </div>
               <div class="courses-btns">
                 <a href="" class="courses-btn-edit btn">ویرایش</a>
-                <a href="" class="courses-btn-delete btn">حذف</a>
+                <a
+                  href="/courses/remove/<%= course._id%>"
+                  class="courses-btn-delete btn"
+                  >حذف</a
+                >
               </div>
             </li>
+            <%})%>
           </ul>
           <!-- Courses List -->
         </section>
