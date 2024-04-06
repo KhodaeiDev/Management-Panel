@@ -3,6 +3,7 @@ require("dotenv").config();
 const path = require("path");
 const ejs = require("ejs");
 const courseRouter = require("./routes/course");
+require("./configs/db");
 
 const app = express();
 
