@@ -3,10 +3,13 @@ const courseModel = require("./../model/course");
 exports.create = async (req, res) => {
   try {
     const { title } = req.body;
-    if (!title) {
-      return res.status(400).json({ message: "لطفا نام دوره را وارد کنید" });
-    }
 
+    if (!title) {
+      const errors = "لطفا نام دوره را وارد کنید";
+      return res.render("course", {
+        errors,
+      });
+    }
     await courseModel.create({ title });
     return res.redirect("/courses");
   } catch (err) {
@@ -16,7 +19,7 @@ exports.create = async (req, res) => {
 exports.getAll = async (req, res) => {
   const courses = await courseModel.find({});
 
-  res.render("index", {
+  return res.render("course", {
     courses,
     title: "Course Page",
   });

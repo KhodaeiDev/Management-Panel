@@ -1,7 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const path = require("path");
-const ejs = require("ejs");
+const session = require("express-session");
 const courseRouter = require("./routes/course");
 require("./configs/db");
 
@@ -12,15 +12,34 @@ app.use("/js", express.static(path.join(__dirname, "public/js")));
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use("/fonts", express.static(path.join(__dirname, "public/fonts")));
 
+////////////
+app.use(
+  session({
+    secret: "My secret key",
+    saveUninitialized: true,
+    resave: false,
+  })
+);
+app.use((req, res, next) => {
+  res.locals.message = req.session.message;
+  delete req.session.message;
+  next();
+});
+//////////
+
 app.use(express.urlencoded({ extended: false }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.get("/", async (req, res) => {
+  return res.render("main");
+});
+app.get("/about-me", async (req, res) => {
+  return res.render("about-me");
+});
+
 app.use("/courses", courseRouter);
 
-app.get("/", async (req, res) => {
-  res.render("index");
-});
 app.listen(process.env.Port, () => {
   console.log(`Server Running on Port ${process.env.Port}`);
 });
