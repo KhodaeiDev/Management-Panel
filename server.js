@@ -43,6 +43,11 @@ app.get("/about-me", async (req, res) => {
 app.use("/courses", courseRouter);
 app.use("/login", loginRouter);
 
+// 404 Not Found
+app.use((req, res) => {
+  return res.render("404");
+});
+
 app.listen(process.env.Port, () => {
   console.log(`Server Running on Port ${process.env.Port}`);
 });

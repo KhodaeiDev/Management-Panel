@@ -1,0 +1,91 @@
+body {
+  background-color: #0a0a0a;
+}
+
+hr {
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+span.err-error {
+  text-transform: uppercase;
+  font-size: 7em;
+  font-family: "Rajdhani";
+  font-weight: 500;
+  color: #b4100b;
+  letter-spacing: 25px;
+}
+
+span.err-status {
+  text-transform: uppercase;
+  font-size: 2em;
+  font-family: "Rajdhani";
+  font-weight: 500;
+  color: #cecece;
+  letter-spacing: 10px;
+}
+
+span.err-statuscode {
+  text-transform: uppercase;
+  font-size: 2em;
+  font-family: "Rajdhani";
+  font-weight: 500;
+  color: #626262;
+  letter-spacing: 10px;
+}
+span.err-junk {
+  text-transform: uppercase;
+  font-size: 1em;
+  font-family: "Rajdhani";
+  font-weight: 500;
+  color: #cecece;
+  letter-spacing: 10px;
+}
+
+span.err-boxed {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+  font-family: "Rajdhani";
+  font-weight: 600;
+  letter-spacing: 7px;
+  padding: 0px 6px 0px 6px;
+  margin: 0px 25px 0px 0px;
+}
+span.err-boxed.wht {
+  color: #000;
+  background-color: #cecece;
+}
+span.err-boxed.red {
+  border: 0px solid rgba(255, 255, 255, 0.1);
+  color: #000;
+  background-color: #b4100b;
+  margin-left: -20px;
+}
+.err-container {
+  margin: 5% 50% 0 25%;
+  width: 50%;
+  display: block;
+  padding: 80px 0;
+}
+
+a.err-link {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-family: "Rajdhani";
+  font-weight: 500;
+  color: #c9b311d0;
+  letter-spacing: 10px;
+  text-decoration: none;
+}
+
+a.err-link:hover {
+  text-transform: uppercase;
+  font-size: 1em;
+  font-family: "Rajdhani";
+  font-weight: 500;
+  color: #e9cf0ae5;
+  letter-spacing: 10px;
+  text-decoration: line-through;
+}
