@@ -252,6 +252,7 @@ a.active {
 }
 
 .navbar-user-avatar {
+  direction: ltr;
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
