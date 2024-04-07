@@ -3,6 +3,7 @@ require("dotenv").config();
 const path = require("path");
 const session = require("express-session");
 const courseRouter = require("./routes/course");
+const loginRouter = require("./routes/login");
 require("./configs/db");
 
 const app = express();
@@ -28,6 +29,7 @@ app.use((req, res, next) => {
 //////////
 
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
@@ -39,6 +41,7 @@ app.get("/about-me", async (req, res) => {
 });
 
 app.use("/courses", courseRouter);
+app.use("/login", loginRouter);
 
 app.listen(process.env.Port, () => {
   console.log(`Server Running on Port ${process.env.Port}`);
