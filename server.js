@@ -33,7 +33,7 @@ app.use(express.json());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.get("/", async (req, res) => {
+app.get("/home", async (req, res) => {
   return res.render("main");
 });
 app.get("/about-me", async (req, res) => {
@@ -41,7 +41,7 @@ app.get("/about-me", async (req, res) => {
 });
 
 app.use("/courses", courseRouter);
-app.use("/login", loginRouter);
+app.use("/", loginRouter);
 
 // 404 Not Found
 app.use((req, res) => {
