@@ -4,6 +4,8 @@ const path = require("path");
 const session = require("express-session");
 const courseRouter = require("./routes/course");
 const loginRouter = require("./routes/login");
+const authMiddleware = require("./middleware/auth");
+const isAdminMiddleware = require("./middleware/isAdmin");
 require("./configs/db");
 
 const app = express();
@@ -33,10 +35,10 @@ app.use(express.json());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.get("/home", async (req, res) => {
+app.get("/home", authMiddleware, isAdminMiddleware, async (req, res) => {
   return res.render("main");
 });
-app.get("/about-me", async (req, res) => {
+app.get("/about-me", authMiddleware, isAdminMiddleware, async (req, res) => {
   return res.render("about-me");
 });
 
