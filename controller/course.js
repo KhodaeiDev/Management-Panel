@@ -1,10 +1,12 @@
 const courseModel = require("./../model/course");
+const { validationResult } = require("express-validator");
 
 exports.create = async (req, res) => {
   try {
     const { title } = req.body;
-    if (!title) {
-      req.flash("error", "لطفا نام دوره را وارد کنید");
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+      req.flash("error", result.errors[0].msg);
       return res.redirect("/courses");
     }
 
