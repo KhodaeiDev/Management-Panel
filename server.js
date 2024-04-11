@@ -35,9 +35,9 @@ app.use(express.json());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.get("/home", authMiddleware, isAdminMiddleware, async (req, res) => {
-  return res.render("main");
-});
+// app.get("/home", authMiddleware, isAdminMiddleware, async (req, res) => {
+//   return res.render("main");
+// });
 app.get("/about-me", authMiddleware, isAdminMiddleware, async (req, res) => {
   return res.render("about-me");
 });

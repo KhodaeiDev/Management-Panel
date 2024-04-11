@@ -1,6 +1,7 @@
 const adminModel = require("./../model/admins");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const courseModel = require("./../model/course");
 
 exports.login = async (req, res) => {
   try {
@@ -34,6 +35,7 @@ exports.confirm = async (req, res) => {
     if (!confirmPassword) {
       return res.render("login", { message: "رمز شما نادرست است" });
     } else {
+      const courses = await courseModel.find({});
       const acsessToken = await jwt.sign(
         { id: user._id },
         process.env.jwt_secret,
@@ -47,7 +49,9 @@ exports.confirm = async (req, res) => {
         httpOnly: true,
         sameSite: "strict",
       });
-      return res.render("main");
+      return res.render("course", {
+        courses,
+      });
     }
   } catch {
     return res
