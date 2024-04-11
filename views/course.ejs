@@ -199,6 +199,11 @@
         <section class="courses">
           <div class="courses-top">
             <h2 class="courses-title">دوره ها</h2>
+            <%if(locals.messages.error){%>
+            <h1 class="error"><%= locals.messages.error%></h1>
+            <%}else if(locals.messages.success){%>
+            <h1 class="success"><%= locals.messages.success%></h1>
+            <%}%>
             <a href="#" class="btn courses-btn-add-new-course"
               >اضافه کردن دوره جدید</a
             >

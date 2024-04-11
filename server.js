@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const path = require("path");
 const session = require("express-session");
+const flash = require("express-flash");
 const courseRouter = require("./routes/course");
 const loginRouter = require("./routes/login");
 const authMiddleware = require("./middleware/auth");
@@ -19,15 +20,11 @@ app.use("/fonts", express.static(path.join(__dirname, "public/fonts")));
 app.use(
   session({
     secret: "My secret key",
-    saveUninitialized: true,
+    saveUninitialized: false,
     resave: false,
   })
 );
-app.use((req, res, next) => {
-  res.locals.message = req.session.message;
-  delete req.session.message;
-  next();
-});
+app.use(flash());
 //////////
 
 app.use(express.urlencoded({ extended: false }));
