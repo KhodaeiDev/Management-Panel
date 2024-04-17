@@ -4,18 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/login.css" />
-    <title>login page</title>
+    <title>Document</title>
   </head>
   <body>
-    <div class="login-page">
-      <div class="form">
-        <form class="login-form" action="/" method="post">
-          <input type="text" placeholder="username" name="username" />
-          <input type="password" placeholder="password" name="password" />
-          <%=message%>
-          <button type="submit">login</button>
-        </form>
-      </div>
+    <div class="login-box">
+      <h2>Login</h2>
+      <form action="/" method="post">
+        <div class="user-box">
+          <input type="text" name="username" />
+          <label>Username</label>
+        </div>
+        <div class="user-box">
+          <input type="password" name="password" />
+          <label>Password</label>
+        </div>
+        <div>
+          <%if(locals.messages.error){%>
+          <p class="error"><%=locals.messages.error%></p>
+          <%}%>
+        </div>
+
+        <button href="/courses" type="submit">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Submit
+        </button>
+      </form>
     </div>
   </body>
 </html>
