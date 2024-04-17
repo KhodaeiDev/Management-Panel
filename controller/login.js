@@ -2,6 +2,7 @@ const adminModel = require("./../model/admins");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const courseModel = require("./../model/course");
+const { validationResult } = require("express-validator");
 
 exports.login = async (req, res) => {
   try {
@@ -16,24 +17,23 @@ exports.login = async (req, res) => {
 exports.confirm = async (req, res) => {
   try {
     const { username, password } = req.body;
-
-    if (username === "" || password === "") {
-      return res.render("login", {
-        message: "لطفا نام کاربری و رمز عبور را وارد کنید",
-      });
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+      req.flash("error", result.errors[0].msg);
+      return res.redirect("/");
     }
 
     const user = await adminModel.findOne({ username });
 
     if (!user) {
-      return res.render("login", {
-        message: "کاربری با این نام کاربری پیدا نشد",
-      });
+      req.flash("error", "کاربری با این نام کاربری پیدا نشد");
+      return res.redirect("/");
     }
 
     const confirmPassword = await bcrypt.compare(password, user.password);
     if (!confirmPassword) {
-      return res.render("login", { message: "رمز شما نادرست است" });
+      req.flash("error", "رمز شما نادرست است");
+      return res.redirect("/");
     } else {
       const courses = await courseModel.find({});
       const acsessToken = await jwt.sign(
@@ -53,9 +53,7 @@ exports.confirm = async (req, res) => {
         courses,
       });
     }
-  } catch {
-    return res
-      .status(500)
-      .json({ message: "Ooops !!! Unknown Server Error :( " });
+  } catch (err) {
+    return res.status(500).json(err);
   }
 };
