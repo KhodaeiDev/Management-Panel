@@ -12,9 +12,9 @@ router
 router
   .route("/")
   .post(
+    courseValidator(),
     authMiddleware,
     isAdminMiddleware,
-    courseValidator(),
     courseController.create
   );
 router

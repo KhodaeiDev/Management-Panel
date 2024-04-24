@@ -20,6 +20,7 @@ exports.create = async (req, res) => {
     req.flash("success", "دوره با موفقیت ایجاد شد");
     return res.redirect("/courses");
   } catch (err) {
+    console.log(err);
     return res.status(500).json("Ooops !!! Unknown Server Error :( ");
   }
 };

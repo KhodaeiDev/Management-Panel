@@ -44,7 +44,7 @@ exports.confirm = async (req, res) => {
         }
       );
 
-      res.cookie("jwt", acsessToken, {
+      res.cookie("token", acsessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
         sameSite: "strict",

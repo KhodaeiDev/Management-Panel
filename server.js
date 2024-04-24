@@ -3,10 +3,13 @@ require("dotenv").config();
 const path = require("path");
 const session = require("express-session");
 const flash = require("express-flash");
+const cookieParser = require("cookie-parser");
 const courseRouter = require("./routes/course");
 const loginRouter = require("./routes/login");
+const aboutRouter = require("./routes/about-me");
 const authMiddleware = require("./middleware/auth");
 const isAdminMiddleware = require("./middleware/isAdmin");
+const jwt = require("jsonwebtoken");
 require("./configs/db");
 
 const app = express();
@@ -29,18 +32,17 @@ app.use(flash());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // app.get("/home", authMiddleware, isAdminMiddleware, async (req, res) => {
 //   return res.render("main");
 // });
-app.get("/about-me", authMiddleware, isAdminMiddleware, async (req, res) => {
-  return res.render("about-me");
-});
 
 app.use("/courses", courseRouter);
 app.use("/", loginRouter);
+app.use("/about-me", aboutRouter);
 
 // 404 Not Found
 app.use((req, res) => {
