@@ -4,9 +4,7 @@ const userModel = require("./../model/admins");
 module.exports = async (req, res, next) => {
   const token = req.cookies.token;
   if (!token) {
-    return res.status(403).json({
-      message: "This api protected",
-    });
+    return res.render("dontAcces");
   }
 
   try {

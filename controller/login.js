@@ -45,7 +45,7 @@ exports.confirm = async (req, res) => {
       );
 
       res.cookie("token", acsessToken, {
-        maxAge: 30 * 24 * 60 * 60 * 1000,
+        maxAge: 1200000,
         httpOnly: true,
         sameSite: "strict",
         secure: true,
