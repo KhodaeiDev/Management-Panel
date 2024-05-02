@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const dbURI = "mongodb://127.0.0.1:27017/node-ejs";
+const dbURI = process.env.DB_URI;
 
 mongoose
   .connect(dbURI)
