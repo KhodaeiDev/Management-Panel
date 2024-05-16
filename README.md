@@ -15,7 +15,3 @@
 ![](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![](https://badges.aleen42.com/src/ejs.svg)
-
-```
-
-```
