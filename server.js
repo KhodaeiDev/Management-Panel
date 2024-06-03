@@ -14,7 +14,7 @@ require("./configs/db");
 const app = express();
 
 // Base Url site
-const baseUrl = process.env.BASE_URL || "http://localhost:3000";
+const baseUrl = process.env.BASE_URL;
 app.locals.baseUrl = baseUrl;
 
 app.use("/css", express.static(path.join(__dirname, "public/style")));
