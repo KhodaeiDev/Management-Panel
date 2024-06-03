@@ -20,13 +20,13 @@ exports.confirm = async (req, res, next) => {
     const user = await adminModel.findOne({ username });
 
     if (!user) {
-      req.flash("error", "کاربری با این نام کاربری پیدا نشد");
+      req.flash("error", "نام کاربری یا رمز عبور نامعتبر میباشد");
       return res.redirect("/");
     }
 
     const confirmPassword = await bcrypt.compare(password, user.password);
     if (!confirmPassword) {
-      req.flash("error", "رمز شما نادرست است");
+      req.flash("error", "نام کاربری یا رمز عبور نامعتبر میباشد");
       return res.redirect("/");
     } else {
       const courses = await courseModel.find({});
