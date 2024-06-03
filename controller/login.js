@@ -5,16 +5,10 @@ const courseModel = require("./../model/course");
 const { validationResult } = require("express-validator");
 
 exports.login = async (req, res) => {
-  try {
-    return res.render("login");
-  } catch {
-    return res
-      .status(500)
-      .json({ message: "Ooops !!! Unknown Server Error :( " });
-  }
+  return res.render("login");
 };
 
-exports.confirm = async (req, res) => {
+exports.confirm = async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const result = validationResult(req);
@@ -55,6 +49,6 @@ exports.confirm = async (req, res) => {
       });
     }
   } catch (err) {
-    return res.status(500).json(err);
+    next(err);
   }
 };

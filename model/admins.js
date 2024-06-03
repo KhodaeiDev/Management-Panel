@@ -21,7 +21,7 @@ const schema = new mongoose.Schema(
     },
     role: {
       type: String,
-      default: "Admin",
+      default: "ADMIN",
     },
   },
   { timestamps: true }

@@ -1,7 +1,7 @@
 const courseModel = require("./../model/course");
 const { validationResult } = require("express-validator");
 
-exports.create = async (req, res) => {
+exports.create = async (req, res, next) => {
   try {
     const { title } = req.body;
     const result = validationResult(req);
@@ -20,8 +20,7 @@ exports.create = async (req, res) => {
     req.flash("success", "دوره با موفقیت ایجاد شد");
     return res.redirect("/courses");
   } catch (err) {
-    console.log(err);
-    return res.status(500).json("Ooops !!! Unknown Server Error :( ");
+    next(err);
   }
 };
 exports.getAll = async (req, res) => {
@@ -32,7 +31,7 @@ exports.getAll = async (req, res) => {
     title: "Course Page",
   });
 };
-exports.remove = async (req, res) => {
+exports.remove = async (req, res, next) => {
   try {
     const { id } = req.params;
     await courseModel.findOneAndDelete({ _id: id });
@@ -40,9 +39,9 @@ exports.remove = async (req, res) => {
     req.flash("success", "دوره با موفقیت حذف شد");
     return res.redirect("/courses");
   } catch (err) {
-    return res.status(500).json("Ooops !!! Unknown Server Error :( ");
+    next(err);
   }
 };
-exports.edit = async (req, res) => {
+exports.edit = async (req, res, next) => {
   //
 };

@@ -7,9 +7,8 @@ const cookieParser = require("cookie-parser");
 const courseRouter = require("./routes/course");
 const loginRouter = require("./routes/login");
 const aboutRouter = require("./routes/about-me");
-const authMiddleware = require("./middleware/auth");
-const isAdminMiddleware = require("./middleware/isAdmin");
-const jwt = require("jsonwebtoken");
+const { erorHandller } = require("./middleware/errorHandller");
+
 require("./configs/db");
 
 const app = express();
@@ -36,10 +35,6 @@ app.use(cookieParser());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-// app.get("/home", authMiddleware, isAdminMiddleware, async (req, res) => {
-//   return res.render("main");
-// });
-
 app.use("/courses", courseRouter);
 app.use("/", loginRouter);
 app.use("/about-me", aboutRouter);
@@ -49,6 +44,7 @@ app.use((req, res) => {
   return res.render("404");
 });
 
+app.use(erorHandller);
 app.listen(process.env.Port, () => {
   console.log(`Server Running on Port ${process.env.Port}`);
 });
