@@ -3,5 +3,5 @@ exports.erorHandller = (error, req, res, next) => {
   error.status = error.status || "error";
 
   req.flash("error", error.message);
-  return res.status(res.statusCode).redirect("back");
+  return res.status(res.statusCode).redirect();
 };

@@ -6,6 +6,10 @@ const schema = mongoose.Schema(
       type: String,
       required: true,
     },
+    image: {
+      path: { type: String, required: true },
+      filename: { type: String, required: true },
+    },
   },
   { timestamps: true }
 );

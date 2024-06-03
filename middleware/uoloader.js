@@ -3,18 +3,20 @@ const path = require("path");
 const fs = require("fs");
 
 exports.multerStorage = (destination, allowedType = /jpeg|jpg|png|webp/) => {
+  destination = path.join(__dirname, "..", "public", "images") + destination;
+
   if (!fs.existsSync(destination)) {
-    fs.mkdirSync(destination);
+    fs.mkdir(destination);
   }
 
   const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
+    destination: function (req, file, cb) {
       cb(null, destination);
     },
-    filename: (req, file, cb) => {
+    filename: function (req, file, cb) {
       const extname = path.extname(file.originalname);
-      const filename = Date.now() + Math.floor(Math.random * 9999);
-      cb(`${filename}${extname}`);
+      const filename = Date.now() + Math.floor(Math.random() * 9999);
+      cb(null, `${filename}${extname}`);
     },
   });
 

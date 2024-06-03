@@ -9,6 +9,10 @@ exports.create = async (req, res, next) => {
       req.flash("error", result.errors[0].msg);
       return res.redirect("/courses");
     }
+    if (!req.file) {
+      req.flash("error", "Course Image is a require field");
+      return res.status(403).redirect("/courses");
+    }
 
     const course = await courseModel.findOne({ title });
     if (course) {
@@ -16,7 +20,14 @@ exports.create = async (req, res, next) => {
       return res.redirect("/courses");
     }
 
-    await courseModel.create({ title });
+    const courseImageUrl = `/images/courses/${req.file.filename}`;
+    await courseModel.create({
+      title,
+      image: {
+        path: courseImageUrl,
+        filename: req.file.filename,
+      },
+    });
     req.flash("success", "دوره با موفقیت ایجاد شد");
     return res.redirect("/courses");
   } catch (err) {

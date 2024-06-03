@@ -44,7 +44,9 @@ app.use((req, res) => {
   return res.render("404");
 });
 
+// Error handller
 app.use(erorHandller);
+
 app.listen(process.env.Port, () => {
   console.log(`Server Running on Port ${process.env.Port}`);
 });

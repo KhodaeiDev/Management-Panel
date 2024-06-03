@@ -79,9 +79,8 @@
         <form
           action="/courses"
           class="edit-user-form"
-          ,
           method="post"
-          ,enctype="multipart/form-data"
+          enctype="multipart/form-data"
         >
           <div class="input-field">
             <span><i class="fa fa-tag"></i></span>
@@ -209,7 +208,11 @@
             <%courses.forEach(function(course){%>
             <li class="courses-item">
               <div class="courses-img-title">
-                <img src="images/courses/PWA.jpg" alt="" class="courses-img" />
+                <img
+                  src="http://localhost:3000<%=course.image.path%>"
+                  alt=""
+                  class="courses-img"
+                />
                 <h5 class="courses-name"><%= course.title %></h5>
               </div>
               <div class="courses-btns">
