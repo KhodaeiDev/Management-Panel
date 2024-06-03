@@ -44,6 +44,8 @@ exports.confirm = async (req, res, next) => {
         sameSite: "strict",
         secure: true,
       });
+
+      req.flash("success", "Your Login Successfully");
       return res.render("course", {
         courses,
       });

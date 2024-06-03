@@ -13,6 +13,10 @@ require("./configs/db");
 
 const app = express();
 
+// Base Url site
+const baseUrl = process.env.BASE_URL || "http://localhost:3000";
+app.locals.baseUrl = baseUrl;
+
 app.use("/css", express.static(path.join(__dirname, "public/style")));
 app.use("/js", express.static(path.join(__dirname, "public/js")));
 app.use("/images", express.static(path.join(__dirname, "public/images")));
@@ -45,7 +49,7 @@ app.use((req, res) => {
 });
 
 // Error handller
-app.use(erorHandller);
+// app.use(erorHandller);
 
 app.listen(process.env.Port, () => {
   console.log(`Server Running on Port ${process.env.Port}`);
