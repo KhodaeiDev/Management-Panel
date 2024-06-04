@@ -11,21 +11,6 @@
     <title>Course Page</title>
   </head>
   <body>
-    <!---------------------------------- modal -------------------------------- -->
-    <!-- delete course modal-->
-    <!-- ! add visible class to be visible ! -->
-    <div class="modal-container" id="delete-modal">
-      <!-- ! add visible class to be visible ! -->
-      <div class="modal-content">
-        <!-- ! Delete courses  ! -->
-        <h1 class="modal-title">ایا از حذف دوره مطمئن هستید؟</h1>
-        <div class="btn-groups">
-          <button class="accept-btn">بله</button>
-          <button class="unaccept-btn">خیر</button>
-        </div>
-      </div>
-    </div>
-
     <!-- edit course modal-->
     <!-- ! add visible class to be visible ! -->
     <div class="modal-container" id="edit-modal">
@@ -113,33 +98,6 @@
     </div>
     <!----------------------------------End modal -------------------------------- -->
 
-    <!-- add new course modal-->
-    <!-- ! add visible class to be visible ! -->
-    <div class="modal-container" id="add-discounts-modal">
-      <div class="modal-content">
-        <!-- ! Edit Course  ! -->
-        <h1 class="modal-title">اعمال تخفیف همگانی</h1>
-        <form action="" class="edit-user-form">
-          <div class="input-field">
-            <span><i class="fa fa-tag"></i></span>
-            <input
-              type="text"
-              id=""
-              name=""
-              class="discount-input"
-              placeholder="میزان تخفیف (درصد)"
-              spellcheck="false"
-            />
-          </div>
-
-          <button type="submit" class="add-discount-btn update-btn btn">
-            اعمال تخفیف
-          </button>
-        </form>
-      </div>
-    </div>
-    <!----------------------------------End modal -------------------------------- -->
-
     <div class="container">
       <!-- Sidebar -->
       <aside class="sidebar">
@@ -216,11 +174,7 @@
                 <h5 class="courses-name"><%= course.title %></h5>
               </div>
               <div class="courses-btns">
-                <a
-                  href="/courses/edit/<%=course._id%>"
-                  class="courses-btn-edit btn"
-                  >ویرایش</a
-                >
+                <a href="#" class="courses-btn-edit btn">ویرایش</a>
                 <a
                   href="/courses/remove/<%= course._id%>"
                   class="courses-btn-delete btn"
