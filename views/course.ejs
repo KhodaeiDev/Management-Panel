@@ -18,13 +18,20 @@
       <div class="modal-content">
         <!-- ! Edit Course  ! -->
         <h1 class="modal-title">اطلاعات جدید را وارد کنید</h1>
-        <form action="" class="edit-user-form">
+        <form
+          action=""
+          method="post"
+          class="edit-user-form"
+          id="edit-course-form"
+          enctype="multipart/form-data"
+        >
+          <input type="hidden" id="course-id" name="courseID" value="" />
           <div class="input-field">
             <span><i class="fa fa-tag"></i></span>
             <input
               type="text"
               id=""
-              name=""
+              name="name"
               placeholder="نام دوره"
               spellcheck="false"
             />
@@ -34,7 +41,7 @@
             <input
               type="text"
               id=""
-              name=""
+              name="price"
               placeholder="قیمت دوره"
               spellcheck="false"
             />
@@ -44,7 +51,7 @@
             <input
               type="text"
               id=""
-              name=""
+              name="teacher"
               placeholder="مدرس دوره"
               spellcheck="false"
             />
@@ -174,7 +181,12 @@
                 <h5 class="courses-name"><%= course.title %></h5>
               </div>
               <div class="courses-btns">
-                <a href="#" class="courses-btn-edit btn">ویرایش</a>
+                <a
+                  href="#"
+                  class="courses-btn-edit btn"
+                  data-id="<%= course._id%> "
+                  >ویرایش</a
+                >
                 <a
                   href="/courses/remove/<%= course._id%>"
                   class="courses-btn-delete btn"

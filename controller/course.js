@@ -16,7 +16,7 @@ exports.create = async (req, res, next) => {
 
     const course = await courseModel.findOne({ title });
     if (course) {
-      req.flash("error", "نام دوره تکراری است");
+      req.flash("error", "The name of the course is repeated");
       return res.redirect("/courses");
     }
 
@@ -28,7 +28,7 @@ exports.create = async (req, res, next) => {
         filename: req.file.filename,
       },
     });
-    req.flash("success", "دوره با موفقیت ایجاد شد");
+    req.flash("success", "Course created successfully");
     return res.redirect("/courses");
   } catch (err) {
     next(err);
@@ -47,7 +47,7 @@ exports.remove = async (req, res, next) => {
     const { id } = req.params;
     await courseModel.findOneAndDelete({ _id: id });
 
-    req.flash("success", "دوره با موفقیت حذف شد");
+    req.flash("success", "course deleted successfully");
     return res.redirect("/courses");
   } catch (err) {
     next(err);

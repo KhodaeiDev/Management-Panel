@@ -26,7 +26,7 @@ router
   .route("/remove/:id")
   .get(authMiddleware, isAdminMiddleware, courseController.remove);
 router
-  .route("/edit/:id")
-  .get(authMiddleware, isAdminMiddleware, courseController.edit);
+  .route("/edit/:courseID")
+  .post(authMiddleware, isAdminMiddleware, courseController.edit);
 
 module.exports = router;

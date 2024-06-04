@@ -4,9 +4,11 @@ const courseValidator = () => {
   return [
     body("title")
       .notEmpty()
-      .withMessage("نام دوره نمیتواند خالی باشد")
-      .isLength({ min: 3, max: 25 })
-      .withMessage("عنوان دوره نمیتواند کمتر از 3 و بیشتر از 25 کاراکتر باشد"),
+      .withMessage("Course name is a required Field")
+      .isLength({ min: 3, max: 45 })
+      .withMessage(
+        "Course title cannot be less than 3 and more than 45 characters"
+      ),
   ];
 };
 
